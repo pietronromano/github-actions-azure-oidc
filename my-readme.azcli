@@ -1,0 +1,35 @@
+# DATE: 17-Oct-2025
+
+# Login to  my tenant avoiding work tenant 
+az login --tenant pietronromanolive.onmicrosoft.com 
+
+# Set a specific Subscription
+az account set -s ...
+
+# Create a new app registration
+az ad app create --display-name github-actions-oidc
+- "appId": "3afe81a5-d873-4b01-a1d3-d72d0c24118c"
+
+# Create Service principle
+az ad sp create --id 3afe81a5-d873-4b01-a1d3-d72d0c24118c
+- "id": "bcc3ae4d-dca8-4d64-bca0-a40a46e4a647"
+- "servicePrincipalNames": [- "3afe81a5-d873-4b01-a1d3-d72d0c24118c" ],
+
+# Then, open the Azure portal, and​ in Microsoft Entra, find release-recipe under App registrations. 
+ - [App is under "All Applications"]
+ - Add the OIDC trust under Certificates & secrets | Federated credentials | Add credentials. 
+ - Fill out the form. Set the organization to your GitHub username, enter the repository name, and pick Environment as the entity type (see Figure 7.1):
+ - SEE p. 335 Kaufmann, Michael. GitHub Actions Cookbook: A practical guide to automating repetitive tasks and streamlining your development process
+
+ # My credential name: github-actions-oidc-azure
+ - Application (client) ID: 3afe81a5-d873-4b01-a1d3-d72d0c24118c
+ - Directory (tenant) ID: 599fd2f6-80be-4f0d-9b03-b3e74fdcf211
+ - Subscription ID: 8f45e7ec-8404-4723-aa20-fc58a7c4c120
+
+# Then, assign the service principle a role in your subscription. Open the subscription in the portal. 
+    - [Contributor is under "Privileged Administrator Roles"]
+# Under Access control (IAM) | Role assignment | Add | Add role assignment, follow the wizard. Select role—for example, Contributor—and click Next. Select User, group, or service principal, and select the service principle you created earlier.
+
+client-id: ${{ secrets.AZURE_CLIENT_ID }}
+            tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+            subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
