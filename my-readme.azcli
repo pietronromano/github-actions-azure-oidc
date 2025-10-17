@@ -30,6 +30,7 @@ az ad sp create --id 3afe81a5-d873-4b01-a1d3-d72d0c24118c
     - [Contributor is under "Privileged Administrator Roles"]
 # Under Access control (IAM) | Role assignment | Add | Add role assignment, follow the wizard. Select role—for example, Contributor—and click Next. Select User, group, or service principal, and select the service principle you created earlier.
 
-client-id: ${{ secrets.AZURE_CLIENT_ID }}
-            tenant-id: ${{ secrets.AZURE_TENANT_ID }}
-            subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+# Set Secrets in Github Production Environment:
+ - AZURE_CLIENT_ID
+ - AZURE_TENANT_ID
+ - AZURE_SUBSCRIPTION_ID 
