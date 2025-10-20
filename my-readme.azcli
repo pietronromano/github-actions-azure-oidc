@@ -1,4 +1,6 @@
 # DATE: 17-Oct-2025
+# SOURCE: p. 335 Kaufmann, Michael. GitHub Actions Cookbook: A practical guide to automating repetitive tasks and streamlining your development process
+
 
 # Login to  my tenant avoiding work tenant 
 az login --tenant pietronromanolive.onmicrosoft.com 
@@ -19,8 +21,7 @@ az ad sp create --id 3afe81a5-d873-4b01-a1d3-d72d0c24118c
  - [App is under "All Applications"]
  - Add the OIDC trust under Certificates & secrets | Federated credentials | Add credentials. 
  - Fill out the form. Set the organization to your GitHub username, enter the repository name, and pick Environment as the entity type (see Figure 7.1):
- - SEE p. 335 Kaufmann, Michael. GitHub Actions Cookbook: A practical guide to automating repetitive tasks and streamlining your development process
-
+ 
  # My credential name: github-actions-oidc-azure
  - Application (client) ID: 3afe81a5-d873-4b01-a1d3-d72d0c24118c
  - Directory (tenant) ID: 599fd2f6-80be-4f0d-9b03-b3e74fdcf211
