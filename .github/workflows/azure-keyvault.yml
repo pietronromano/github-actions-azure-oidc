@@ -29,10 +29,10 @@
         - name: Retrieve secret from Key Vault
           id: keyvault
           uses: azure/CLI@v2.2.0
-          with: # echo "::add-mask::$SECRET_VALUE"
+          with:  
             inlineScript: |
               SECRET_VALUE=$(az keyvault secret show --name Secret1 --vault-name ${{ secrets.KEYVAULT_NAME }} --query value -o tsv)
-        
+              echo "::add-mask::$SECRET_VALUE"
               echo "SECRET_VALUE=$SECRET_VALUE" >> $GITHUB_ENV
         
         - name: Use retrieved secret
@@ -40,7 +40,8 @@
 
         - uses: actions/checkout@v5 # Checkout the file deploy.sh
         - name: Use SECRET_VALUE in deployment
+          # NOTE: requires adding permissions to file before pushing: sudo chmod +x deploy.sh
           run: |
-            bash ./deploy.sh
+             ./deploy.sh  
           env:
             SECRET_VALUE: ${{ env.SECRET_VALUE }}
