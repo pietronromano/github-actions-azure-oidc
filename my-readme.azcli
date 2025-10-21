@@ -1,15 +1,27 @@
 # DATE: 17-Oct-2025
 # SOURCE: p. 335 Kaufmann, Michael. GitHub Actions Cookbook: A practical guide to automating repetitive tasks and streamlining your development process
 
+# SEE ALSO for a how-to with az CLI:
+# https://github.com/pietronromano/github-actions-dotnet/blob/main/my-readme-webapp-oidc.azcli
+
+# NOTE: Application Objects & Service Principals
+## An application object is used as a template or blueprint to create one or more service principal objects. 
+## The service principal (which is a security principal) defines what the app can actually do in a specific target directory, who can use it, what resources it has access to, and so on. 
+# If you register an application in the portal, an application object as well as a service principal object are automatically created in your home tenant. 
+# If you register/create an application using the Microsoft Graph APIs, creating the service principal object is a separate step.
+############################################################################################
+
+# Variables
+entra_app="github-actions-oidc"
 
 # Login to  my tenant avoiding work tenant 
 az login --tenant pietronromanolive.onmicrosoft.com 
 
 # Set a specific Subscription
-az account set -s ...
+az account set -s 8f45e7ec-8404-4723-aa20-fc58a7c4c120
 
 # Create a new app registration
-az ad app create --display-name github-actions-oidc
+az ad app create --display-name $entra_app
 - "appId": "3afe81a5-d873-4b01-a1d3-d72d0c24118c"
 
 # Create Service principle
@@ -17,10 +29,11 @@ az ad sp create --id 3afe81a5-d873-4b01-a1d3-d72d0c24118c
 - "id": "bcc3ae4d-dca8-4d64-bca0-a40a46e4a647"
 - "servicePrincipalNames": [- "3afe81a5-d873-4b01-a1d3-d72d0c24118c" ],
 
-# Then, open the Azure portal, and​ in Microsoft Entra, find release-recipe under App registrations. 
- - [App is under "All Applications"]
- - Add the OIDC trust under Certificates & secrets | Federated credentials | Add credentials. 
- - Fill out the form. Set the organization to your GitHub username, enter the repository name, and pick Environment as the entity type (see Figure 7.1):
+# To see new Entra Application in Portal: Entra ID -> App  Registrations -> All Applications
+- https://portal.azure.com/#view/Microsoft_AAD_IAM/ActiveDirectoryMenuBlade/~/RegisteredApps
+
+## Add the OIDC trust under Certificates & secrets | Federated credentials | Add credentials. 
+## Fill out the form. Set the organization to your GitHub username, enter the repository name, and pick Environment as the entity type (see Figure 7.1):
  
  # My credential name: github-actions-oidc-azure
  - Application (client) ID: 3afe81a5-d873-4b01-a1d3-d72d0c24118c
