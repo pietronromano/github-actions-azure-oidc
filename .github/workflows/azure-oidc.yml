@@ -1,6 +1,8 @@
+# DATE: 21-Oct-2025
 # SEE: https://docs.github.com/en/actions/deployment/security-hardening-your-deployments/configuring-openid-connect-in-azure
-  
-  name: oidc-azure
+############################################################################################
+
+  name: azure-oidc
   on:
     push:
       branches: none # [ main ]

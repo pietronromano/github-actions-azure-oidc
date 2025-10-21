@@ -48,3 +48,16 @@ az ad sp create --id 3afe81a5-d873-4b01-a1d3-d72d0c24118c
  - AZURE_CLIENT_ID
  - AZURE_TENANT_ID
  - AZURE_SUBSCRIPTION_ID 
+
+
+############################################################################################
+# Keyvault
+# SEE: https://learn.microsoft.com/en-us/azure/developer/github/github-actions-key-vault
+
+# Set Secret in Github Production Environment:
+ - KEYVAULT_NAME: pnrkeyvault1
+
+# Grant permissions: Make sure the service principal has appropriate access to the Key Vault 
+    github-actions-oidc
+# (example, "Key Vault Secrets User" role).
+# Replace <SECRET_NAME> with your Key Vault secret name.
