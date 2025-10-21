@@ -79,4 +79,4 @@ az ad sp show --id bcc3ae4d-dca8-4d64-bca0-a40a46e4a647
 # Replace <SECRET_NAME> with your Key Vault secret name.
 
 # IMPORTANT: Add execute permissions to deploy.sh, then push
-git update-index --chmod=+x ./deploy.sh
+sudo chmod +x deploy.sh

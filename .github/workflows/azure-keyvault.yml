@@ -41,6 +41,6 @@
         - uses: actions/checkout@v5 # Checkout the file deploy.sh
         - name: Use SECRET_VALUE in deployment
           run: |
-            ./deploy.sh
+            bash ./deploy.sh
           env:
             SECRET_VALUE: ${{ env.SECRET_VALUE }}
