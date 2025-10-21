@@ -28,11 +28,11 @@
     
         - name: Retrieve secret from Key Vault
           id: keyvault
-          uses: azure/CLI@v1
-          with:
+          uses: azure/CLI@v2.2.0
+          with: # echo "::add-mask::$SECRET_VALUE"
             inlineScript: |
               SECRET_VALUE=$(az keyvault secret show --name Secret1 --vault-name ${{ secrets.KEYVAULT_NAME }} --query value -o tsv)
-              echo "::add-mask::$SECRET_VALUE"
+        
               echo "SECRET_VALUE=$SECRET_VALUE" >> $GITHUB_ENV
         
         - name: Use retrieved secret
