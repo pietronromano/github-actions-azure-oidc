@@ -64,19 +64,15 @@ az ad sp create --id 3afe81a5-d873-4b01-a1d3-d72d0c24118c
 # Set Secret in Github Production Environment:
  - KEYVAULT_NAME: pnrkeyvault1
 
-# NOTE: requires adding pietronromano to Key Vault Secrets Officer
+# NOTE: requires adding pietronromano#EXT... to Key Vault Secrets Officer
 az keyvault secret set --vault-name pnrkeyvault1 --name Secret1 --value 'A secret value'
 az keyvault secret show --vault-name pnrkeyvault1 --name Secret1 
 
-# List DIDN'T show sp created
+# List DIDN'T show the sp created earlier
 az ad sp list -o table
 # Using the id DID work, allows finding the name of the SP to add to Key Vault Secrets Users
 az ad sp show --id bcc3ae4d-dca8-4d64-bca0-a40a46e4a647
 
-# Grant permissions: Make sure the service principal has appropriate access to the Key Vault 
-    github-actions-oidc
-# (example, "Key Vault Secrets User" role).
-# Replace <SECRET_NAME> with your Key Vault secret name.
 
 # IMPORTANT: Add execute permissions to deploy.sh, then push
 sudo chmod +x deploy.sh
